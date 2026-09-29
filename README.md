@@ -7,7 +7,7 @@
 [![R-Universe](https://eblondel.r-universe.dev/badges/rsdmx)](http://eblondel.r-universe.dev/#package:rsdmx)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.592404.svg)](https://doi.org/10.5281/zenodo.592404)
 
-** Tools for reading SDMX data and metadata documents in R ** 
+**Tools for reading SDMX data and metadata documents in R** 
 
 ## Overview
 
