@@ -18,7 +18,7 @@
 
 ### Citation
 
-We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/5183/eblondel/rsdmx.svg)](https://doi.org/10.5281/zenodo.592404)
+We thank in advance people that use ``rsdmx`` for citing it in their work / publication(s). For this, please use the citation provided at this link [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.592404.svg)](https://doi.org/10.5281/zenodo.592404)
 
 ### Collating scattered SDMX data sources
 
