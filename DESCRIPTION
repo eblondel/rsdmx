@@ -7,7 +7,7 @@ Authors@R: c(
   person("Matthieu", "Stigler", role = c("ctb"), comment =c(ORCID="0000-0002-6802-4290")),
   person("Eric", "Persson", role = c("ctb")))
 Maintainer: Emmanuel Blondel <emmanuel.blondel1@gmail.com>
-Depends: R (>= 2.15)
+Depends: R (>= 4.1)
 Imports: R6, methods, XML (>= 3.98-1.3), httr, plyr, utils
 Suggests: testthat, knitr, roxygen2, markdown
 Description: Set of classes and methods to read data and metadata documents
