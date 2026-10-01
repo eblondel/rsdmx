@@ -141,7 +141,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
       obsKeyNames <- sapply(obsKeyValuesXML, function(x){
         as.character(xmlGetAttr(x, conceptId))
       })
-      obskeydf <- structure(obsKeyValues, .Names = obsKeyNames) 
+      obskeydf <- structure(obsKeyValues, names = obsKeyNames) 
       obskeydf <- as.data.frame(lapply(obskeydf, as.character), stringsAsFactors=FALSE)
     }
     
@@ -161,7 +161,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
                                    as.character(xmlGetAttr(x, conceptId))
                                  })
         
-        obsAttrs.df <- structure(obsAttrsValues, .Names = obsAttrsNames) 
+        obsAttrs.df <- structure(obsAttrsValues, names = obsAttrsNames) 
         obsAttrs.df <- as.data.frame(lapply(obsAttrs.df, as.character), stringsAsFactors=FALSE)
         
         if(any(obsAttrs.df == "NA")){
@@ -213,7 +213,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
       as.character(xmlGetAttr(x, conceptId))
     })
     
-    seriekeydf <- structure(serieKeyValues, .Names = serieKeyNames) 
+    seriekeydf <- structure(serieKeyValues, names = serieKeyNames) 
     seriekeydf <- as.data.frame(lapply(seriekeydf, as.character), stringsAsFactors=FALSE)
     if(!is.null(obsdf)){
       seriekeydf <- seriekeydf[rep(base::row.names(seriekeydf), nrow(obsdf)),]
@@ -239,7 +239,7 @@ as.data.frame.SDMXGenericData <- function(x, row.names=NULL, optional=FALSE,
           as.character(xmlGetAttr(x, conceptId))
         })
         
-        attrs.df <- structure(attrsValues, .Names = attrsNames) 
+        attrs.df <- structure(attrsValues, names = attrsNames) 
         attrs.df <- as.data.frame(lapply(attrs.df, as.character),
                                   stringsAsFactors=FALSE)
         if(!is.null(obsdf)){

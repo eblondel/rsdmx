@@ -39,7 +39,7 @@ test_that("GenericData - 2.0 - Eurostat",{
                                   ENTERPR = c("OTH", "YHE"), NACE_R2 = c("B-E", "M"), 
                                   GEO = c("PL", "PL"), FREQ = c("A", "A"), 
                                   obsTime = rep("2009",2), 
-                                  obsValue = c(16.8, 18)), .Names = c("UNIT", "REASON", "ENTERPR", "NACE_R2", "GEO", "FREQ", "obsTime", "obsValue"), class = "data.frame",
+                                  obsValue = c(16.8, 18)), names = c("UNIT", "REASON", "ENTERPR", "NACE_R2", "GEO", "FREQ", "obsTime", "obsValue"), class = "data.frame",
                              row.names = 1:2))
   
 })
@@ -63,7 +63,7 @@ test_that("GenericData - 2.1",{
                                   obsTime = rep(c("2009","2006"),2),
                                   obsValue = c(NA, NA,43.75,NA),
                                   OBS_STATUS = rep("na",4)),
-                                  .Names = c("UNIT", "Y_GRAD","FOS07", "GE0",
+                                  names = c("UNIT", "Y_GRAD","FOS07", "GE0",
                                              "FREQ", "obsTime", "obsValue"),
                                   class = "data.frame",
                                   row.names = 1:4), na.rm = TRUE))
