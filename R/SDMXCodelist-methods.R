@@ -149,3 +149,41 @@ SDMXCodelist <- function(xmlObj, namespaces){
             Code = codes
   )
 }
+
+#as.data.frame
+#=============
+#'@export
+as.data.frame.SDMXCodelist <- function(x, ...,
+                                        ignore.empty.slots = TRUE){
+  codes <- NULL
+  if(length(x@Code) == 0){
+    warning("SDMXCodelist object contains no codes.")
+    return(NULL)
+  } else {
+    codes <- do.call("rbind.fill",
+                     lapply(x@Code, function(code){
+                       fields <- sapply(slotNames(code), function(x){
+                         obj <- slot(code,x)
+                         if(length(obj)>0) return(obj)
+                       })
+                       fields <- fields[!sapply(fields, is.null)]
+                       fnames <- names(fields)
+                       fields <- as.data.frame(fields, stringsAsFactors = FALSE)
+                       if(length(fnames)==length(colnames(fields))){
+                         colnames(fields)[4:length(fnames)] <- paste(fnames[4:length(fnames)],
+                                                                     sapply(strsplit(colnames(fields)[4:length(fnames)], ".", fixed=T), function(x){x[[1]]}), sep=".")
+                       }
+                       return(fields)
+                     })
+    )
+  }
+  
+  if(ignore.empty.slots){
+    codes <- codes[,colSums(is.na(codes))<nrow(codes)]
+  }
+  
+  return(encodeSDMXOutput(codes))
+}
+
+setAs("SDMXCodelist", "data.frame",
+      function(from) as.data.frame.SDMXCodelist(from));

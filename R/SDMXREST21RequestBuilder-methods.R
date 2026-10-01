@@ -53,6 +53,8 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
   if(is.null(formatter$dataflow)) formatter$dataflow = function(obj){return(obj)}
   #datastructure
   if(is.null(formatter$datastructure)) formatter$datastructure = function(obj){ return(obj)}
+  #codelist
+  if(is.null(formatter$codelist)) formatter$codelist = function(obj){ return(obj)}
   #data
   if(is.null(formatter$data)) formatter$data = function(obj){return(obj)}
   
@@ -92,6 +94,29 @@ SDMXREST21RequestBuilder <- function(regUrl, repoUrl, accessKey = NULL,
       if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
       if(is.null(obj@references)) obj@references = "children"
       req <- paste0(req, "?references=", obj@references)
+      
+      #require key
+      if(!is.null(accessKey)){
+        if(!is.null(obj@accessKey)){
+          if(length(grep("\\?",req))==0) req <- paste0(req, "?")
+          req <- paste(req, sprintf("%s=%s", accessKey, obj@accessKey), sep = "&")
+        }else{
+          stop("Requests to this service endpoint requires an API key")
+        }
+      }
+      
+      return(req)
+    },
+
+    #codelist resource (codelist/agencyID/resourceID/version)
+    #--------------------------------------------------------------------------------
+    codelist = function(obj){
+      if(is.null(obj@agencyId)) obj@agencyId = "all"
+      if(is.null(obj@resourceId)) obj@resourceId = "all"
+      if(is.null(obj@version)) obj@version = "latest"
+      req <- sprintf("%s/codelist/%s/%s/%s",obj@regUrl, obj@agencyId, obj@resourceId, obj@version)
+      if(!skipTrailingSlash) req = paste0(req,"/")
+      if(forceProviderId) req <- paste(req, obj@providerId, sep = "/")
       
       #require key
       if(!is.null(accessKey)){

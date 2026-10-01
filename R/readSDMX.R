@@ -214,11 +214,13 @@ readSDMX <- function(file = NULL, isURL = TRUE, isRData = FALSE,
     requestParams <- switch(resource,
                            "dataflow" = requestFormatter$dataflow(requestParams),
                            "datastructure" = requestFormatter$datastructure(requestParams),
+                           "codelist" = requestFormatter$codelist(requestParams),
                            "data" = requestFormatter$data(requestParams))
     #preparing request
     file <- switch(resource,
                   "dataflow" = requestHandler$dataflow(requestParams),
                   "datastructure" = requestHandler$datastructure(requestParams),
+                  "codelist" = requestHandler$codelist(requestParams),
                   "data" = requestHandler$data(requestParams)
     )
     
